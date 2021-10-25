@@ -3,7 +3,7 @@
   "productName": "my-app",
   "version": "1.0.0",
   "description": "My Electron application description",
-  "main": "src/index.js",
+  "main": "src/login.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.2.5",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "firebase": "^9.1.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",

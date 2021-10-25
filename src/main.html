@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maps Demo</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-side">
+            <input type="number" name="number_input" id="lat" placeholder="lat">
+            <input type="number" name="number_input2" id="long" placeholder="long">
+            <button type="button" id="kargoGirisi">Yeni Kargo Girişi</button>
+        </div>
+        <div class="list-container">
+            <div id="kargo"></div>
+        </div>
+        <div class="containeriki">
+            <input type="text" name="number_input4" id="username" placeholder="Username">
+            <input type="text" name="number_input4" id="oldPass" placeholder="Username">
+            <input type="text" name="number_input4" id="newPass" placeholder="Yeni Şifreniz">
+            <button type="button" id="changePass">Şifreyi Değiştir</button>
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+
+        var latKargo = document.querySelector('#lat');
+        var longKargo = document.querySelector('#long');
+        var addKargo = document.querySelector('#kargoGirisi');
+        var oldUser = document.querySelector('#username');
+        var oldPass = document.querySelector('#oldPass');
+        var newPass = document.querySelector('#newPass');
+        var changePass = document.querySelector('#changePass');
+
+        changePass.addEventListener("click", () => {
+            ipcRenderer.send("newpass", oldUser.value,oldPass.value, newPass.value);
+        })
+
+        addKargo.addEventListener("click", () => {
+            ipcRenderer.send("key:kargolocation", latKargo.value, longKargo.value);
+        })
+
+
+
+        var x = "", i;
+        for (i = 1; i <= 6; i++) {
+            x = x + "<h" + 4 + ">Kargo Numarası " + i + "</h" + 4 + ">";
+        }
+        document.getElementById("kargo").innerHTML = x;
+    </script>
+
+
+
+</body>
+
+</html>
